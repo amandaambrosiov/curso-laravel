@@ -9,7 +9,9 @@ class SupportService
 
     protected $repository;
 
-    public function __construct() {}
+    public function __construct($repository) {
+        $this->repository = $repository;
+    }
 
     public function getAll(string $filter = null): array
     {
@@ -24,13 +26,13 @@ class SupportService
     public function new(
         string $subject,
         string $status,
-        string $body,
+        string $body
     ): stdClass 
     {
-        $this->repository->new(
+        return $this->repository->new(
             $subject,
             $status,
-            $body,
+            $body
         );
     }
 
@@ -41,7 +43,7 @@ class SupportService
         string $body, 
         ): stdClass|null
     {
-        $this->repository->update(
+        return $this->repository->update(
             $id,
             $subject,
             $status,
@@ -51,6 +53,6 @@ class SupportService
 
     public function delete(string $id): void
     {
-        $this->repository->delete();
+        $this->repository->delete($id);
     }
 }
