@@ -19,6 +19,18 @@ class SupportService
         return $this->repository->getAll($filter);
     }
 
+    public function paginate(
+        int $page = 1, 
+        $totalPerPage =15, 
+        ?string $filter = null
+        ) {
+        return $this->repository->paginate(
+            page: $page,
+            totalPerPage: $totalPerPage,
+            filter: $filter
+        );
+    }
+
     public function findOne(string $id): stdClass|null
     {
         return $this->repository->findOne($id);
