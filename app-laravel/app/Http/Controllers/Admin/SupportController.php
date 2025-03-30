@@ -24,12 +24,8 @@ class SupportController extends Controller
         return view('admin/supports/index', compact('supports'));
     }
 
-    // FUNÇÃO DE MOSTRAR
-
     public function show(string|int $id)
     {
-        //Support::where('id', $id)->first();
-        //Support::where('id', '!=' $id)->first();
         if (!$support = $this->service->findOne($id)) {
             return back();
         }
@@ -53,7 +49,6 @@ class SupportController extends Controller
 
     public function edit(string $id)
     {
-        //if (!$support = $support->where('id', $id)->first()) {
         if (!$support = $this->service->findOne($id)) {
             return back();
         }
@@ -61,11 +56,8 @@ class SupportController extends Controller
         return view('admin/supports.edit', compact('support'));
     }
 
-    // FUNÇÃO DE ATUALIZAR
-
     public function update(StoreUpdateSupport $request, Support $support, string $id)
     {
-
         $support = $this->service->update(
             UpdateSupportDTO::makeFromRequest($request),
         );
@@ -76,8 +68,6 @@ class SupportController extends Controller
 
         return redirect()->route('supports.index');
     }
-
-    // FUNÇÃO DE DELETAR
 
     public function destroy(string $id)
     {

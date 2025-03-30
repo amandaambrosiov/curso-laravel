@@ -36,8 +36,7 @@ class StoreUpdateSupport extends FormRequest
                 'required',
                 'min:3',
                 'max:255',
-                //"unique:supports,subject,{$this->id},id"
-                Rule::unique('supports')->ignore($this->id),
+                Rule::unique('supports')->ignore($this->id), 
             ];
         }
 
