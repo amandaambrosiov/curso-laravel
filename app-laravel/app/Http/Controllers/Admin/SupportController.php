@@ -23,13 +23,15 @@ class SupportController extends Controller
             page: $request->get('page', 1),
             totalPerPage: $request->get('per_page', 15),
             filter: $request->filter,
-        );
+        ); 
 
-        // Fazendo assim ja faz a paginação default 
-        // $supports = Support::paginate();
+        $filters = ['filter' => $request->get('filter', '')];
+
+        // $supports = Support::paginate(4);
         // {{ $supports->links() }}
+        // {{$supports->appends([])->links()}}
 
-        return view('admin/supports/index', compact('supports'));
+        return view('admin/supports/index', compact('supports', 'filters'));
     }
 
     public function show(string|int $id)
